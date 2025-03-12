@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>גרף פעילות מוחית - ניטור מתח ורוגע</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            text-align: center;
+            background-color: #000;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 90%;
+            margin: auto;
+        }
+        .brain-background {
+            position: absolute;
+            width: 70%;
+            height: auto;
+            opacity: 0.12;
+            left: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: pulse 2.5s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.08; }
+            100% { opacity: 0.18; }
+        }
+        canvas {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            border: 2px solid #FFD700;
+            background-color: #111;
+            box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+        }
+        .tips {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #FFFFFF;
+            padding: 10px;
+            text-align: center;
+            display: none;
+        }
+        .waiting-text {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF7744;
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+        .success-text {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00FF00;
+            padding: 10px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>גרף פעילות מוחית - ניטור מתח ורוגע</h1>
+    <div class="container">
+        <img src="brain.png" alt="מוח" class="brain-background">
+        <canvas id="graph"></canvas>
+    </div>
+    <div id="waiting-text" class="waiting-text">המתן עד לקריאת פעילות המוח...</div>
+    <div id="success-text" class="success-text">פעילות המוח שלך נקלטה בהצלחה!</div>
+    <div id="tips" class="tips">כאן יוצגו טיפים להרגעה...</div>
+
+    <script>
+        const ctx = document.getElementById('graph').getContext('2d');
+        let dataPoints = [];
+        let time = 0;
+        let baseValue = 80;
+        let trend = 0.05;
+        let acceleration = 0.0005;
+        let initialDrop = 0.2;
+        let waitingText = document.getElementById("waiting-text");
+        let successText = document.getElementById("success-text");
+        let tipsText = document.getElementById("tips");
+
+        function generateNextPoint() {
+            let variation = (Math.random() - 0.5) * 0.3;
+
+            if (Math.random() < 0.08) { 
+                baseValue += Math.random() * 1.5;
+            }
+
+            if (time < 21) {
+                baseValue = 80;
+            } else if (time < 35) {
+                baseValue -= initialDrop;
+            } else {
+                baseValue -= trend;
+                trend += acceleration;
+            }
+
+            baseValue = Math.max(40, baseValue);
+
+            dataPoints.push({ x: time, y: baseValue });
+
+            if (dataPoints.length > 300) { 
+                dataPoints.shift();
+            }
+            time++;
+        }
+
+        function getMinMaxY() {
+            let values = dataPoints.map(point => point.y);
+            let minY = Math.min(...values);
+            let maxY = Math.max(...values);
+            return { min: Math.floor(minY - 5), max: Math.ceil(maxY + 5) };
+        }
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'רמות לחץ מוחי',
+                    data: dataPoints,
+                    borderColor: '#FFD700',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false,
+                    tension: 0.2
+                }]
+            },
+            options: {
+                animation: false,
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        grid: { color: '#555' },
+                        title: { display: true, text: 'זמן (שניות)', color: '#FFD700' }
+                    },
+                    y: {
+                        grid: { color: '#555' },
+                        title: { display: true, text: 'רמת פעילות מוחית', color: '#FFD700' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        function updateChart() {
+            generateNextPoint();
+            chart.data.datasets[0].data = dataPoints;
+
+            let { min, max } = getMinMaxY();
+            chart.options.scales.y.min = min;
+            chart.options.scales.y.max = max;
+            chart.options.scales.x.min = dataPoints[0].x;
+            chart.options.scales.x.max = dataPoints[dataPoints.length - 1].x;
+            
+            chart.update();
+
+            if (time === 21) {
+                waitingText.style.display = "none";
+                successText.style.display = "block";
+            }
+
+            if (time === 35) {
+                successText.style.display = "none";
+                tipsText.style.display = "block";
+            }
+        }
+
+        setInterval(updateChart, 500);
+
+        const tips = [
+            "נשום עמוק דרך האף, החזק 4 שניות, ונשוף לאט דרך הפה.",
+            "מקד את תשומת הלב שלך בתחושה אחת בלבד, כמו האוויר הנכנס לאף.",
+            "בעצימת עיניים שים לב לכל מחשבה או רגש שעולה, ותביט בהם כמו ענן חולף"
+        ];
+
+        function updateTip() {
+            const tipElement = document.getElementById("tips");
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            tipElement.innerText = randomTip;
+        }
+
+        setInterval(updateTip, 10000);
+    </script>
+</body>
+</html>
