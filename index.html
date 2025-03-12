@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מדד פעילות מוחית</title>
+    <script>
+        function showGraph() {
+            document.getElementById("graph-container").style.display = "block";
+            document.getElementById("show-graph-btn").style.display = "none";
+        }
+    </script>
     <style>
         body {
             text-align: center;
@@ -24,17 +30,23 @@
         .button {
             background-color: #FFD700;
             color: black;
-            padding: 10px 20px;
+            padding: 10px 15px;
             font-size: 18px;
             text-decoration: none;
             border-radius: 5px;
             display: inline-block;
             margin: 20px;
+            cursor: pointer;
+            border: none;
         }
         iframe {
             width: 90%;
-            height: 600px;
+            height: 315px;
             border: 2px solid #FFD700;
+            margin-top: 20px;
+        }
+        #graph-container {
+            display: none;
             margin-top: 20px;
         }
     </style>
@@ -42,11 +54,23 @@
 <body>
 
     <h1>מדד פעילות מוחית - ברוך הבא</h1>
-    <p>הדמיה חיה של פעילות מוחית בזמן אמת</p>
+    
+    <p><strong>איך לקרוא את הגרף?</strong></p>
+    <p>המטרה שלכם היא להגיע לרוגע. ככל שאתם רגועים יותר – הגרף יורד כלפי מטה.</p>
 
-    <a class="button" href="graph.html">מעבר לגרף</a>
+    <p><strong>מה יש לעשות לפני השימוש בגרף?</strong></p>
+    <p>חבשו אוזניות אלחוטיות כדי שיקראו את הפעילות המוחית שלכם, ולאחר מכן לחצו על הכפתור "מעבר לגרף".</p>
 
-    <iframe src="graph.html"></iframe>
+    <!-- סרטון YouTube -->
+    <iframe src="https://www.youtube.com/embed/BnjdaA6GEJw" allowfullscreen></iframe>
+
+    <!-- כפתור להופעת הגרף -->
+    <button id="show-graph-btn" class="button" onclick="showGraph()">מעבר לגרף</button>
+
+    <!-- הגרף יופיע כאן רק אחרי שלוחצים על הכפתור -->
+    <div id="graph-container">
+        <iframe src="graph.html" width="90%" height="600px"></iframe>
+    </div>
 
 </body>
 </html>
