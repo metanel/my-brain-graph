@@ -18,61 +18,43 @@
             padding: 0;
             direction: rtl;
             background-color: white;
-            background-image: url('https://raw.githubusercontent.com/metanel/my-brain-graph/main/assets/images/calm_woman_headphones.png');
+            background-image: url('assets/images/calm_woman_headphones.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-blend-mode: overlay; 
             color: black;
         }
 
         @media (prefers-color-scheme: dark) {
             body {
                 background-color: black;
-                background-image: url('https://raw.githubusercontent.com/metanel/my-brain-graph/main/assets/images/calm_woman_headphones.png');
+                background-image: url('assets/images/calm_woman_headphones.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-blend-mode: overlay;
                 color: white;
             }
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        h1 {
-            padding: 20px;
-            color: #FFD700;
-            text-align: center;
-            font-size: 26px;
         }
 
         .button {
             background-color: #FFD700;
             color: black;
-            padding: 12px 18px;
+            padding: 10px 15px;
             font-size: 18px;
             text-decoration: none;
             border-radius: 5px;
             display: inline-block;
-            margin: 20px auto;
+            margin: 20px;
             cursor: pointer;
             border: none;
-            transition: 0.3s;
-        }
-
-        .button:hover {
-            background-color: #e6c200;
         }
 
         iframe {
-            width: 100%;
+            width: 90%;
             height: 315px;
             border: 2px solid #FFD700;
-            border-radius: 5px;
             margin-top: 20px;
         }
 
@@ -80,24 +62,50 @@
             display: none;
             margin-top: 20px;
         }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 80%;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>מהפכה טכנולוגית: צפו בגלי המוח שלכם בחינם מכל מקום!</h1>
-        <p><strong>איך זה עובד?</strong></p>
-        <p>טכנולוגיה מתקדמת מאפשרת לאוזניות האלחוטיות שלכם לקרוא את פעילות גלי המוח ולתרגם אותה לנתונים ויזואליים.</p>
-        <p><strong>חשוב!</strong> להפעיל את הסרטון לפני תחילת הניטור על מנת לשפר את דיוק המדידה.</p>
+    <div class="content-box">
+        <h1 style="padding: 10px; color: #FFD700;">🚀 מהפכה טכנולוגית: צפו בגלי המוח שלכם בחינם מכל מקום!</h1>
+        <p><strong>🔬 איך זה עובד? טכנולוגיית העתיד לניטור מוחי</strong></p>
+        <p>בפעם הראשונה בהיסטוריה, יש לכם גישה ישירה לניטור גלי המוח שלכם בזמן אמת! 🌍 הטכנולוגיה החדשנית מאחורי הגרף מבוססת על עקרונות EEG (Electroencephalography) – טכניקה רפואית מתקדמת שהייתה שמורה בעבר למעבדות מחקר ולבתי חולים בלבד.</p>
+        <p><strong>🎧 האוזניות האלחוטיות שלכם הן המפתח!</strong> כאשר אתם מחברים אוזניות בלוטוס לאוזניכם ומסנכרנים אותן עם המכשיר, הן מתחילות לשלוח פולסים חשמליים עדינים שנקלטים על פני הקרקפת שלכם. גלי המוח שלכם מגיבים לאותות הללו, ומהחזרה שלהם ניתן למדוד במדויק את הפעילות החשמלית במוח – בדיוק כפי שעושה מכשיר EEG מקצועי!</p>
+        <p>📡 הנתונים עוברים סינון ועיבוד חכם ומוצגים כגרף ויזואלי דינמי, כך שתוכלו לראות איך המוח שלכם פועל בזמן אמת!</p>
+        <p><strong>💡 רוצים לדעת איך המוח שלכם מגיב למתח? רוגע? ריכוז?</strong></p>
+        <p>🔹 הגרף הזה מציג את הפעילות החשמלית של המוח שלכם ומשקף את מצבכם הפיזיולוגי והנפשי.</p>
+        <p>🔹 כאשר אתם דרוכים או במתח, גלי המוח מואצים – וניתן לראות תנודות חדות כלפי מעלה.</p>
+        <p>🔹 כאשר אתם רגועים וממוקדים, הפעילות החשמלית מתאזנת – והגרף יורד בהדרגה.</p>
+        <p><strong>🎵 סאונד ייחודי לניטור מדויק יותר</strong></p>
+        <p>🔊 לפני תחילת הניטור, יש להפעיל את הסאונד המדעי בסרטון למטה</p>
+        <p>🔹 הסאונד בסרטון לא משנה את מצב הרוח שלכם, אלא פועל כסמן עצבי מדעי, המאפשר לאוזניות ולטכנולוגיה שמאחורי הגרף לנטר את פעילות המוח שלכם בדיוק רב יותר.</p>
+        <p>🔹 הסאונד יוצר נקודת יחוס נוירולוגית, כך שהמערכת יודעת לקרוא ולהבין את גלי המוח שלכם ללא עיוותים חיצוניים.</p>
+        <p>✅ הפעילו את הסרטון עם אוזניות אלחוטיות בלבד – וזכרו, אין צורך להתרכז במוזיקה! המערכת תשתמש באותות המוחיים שלכם בזמן אמת כדי לייצר את הניטור המדויק ביותר!</p>
+    </div>
+    
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    
+    <div class="content-box">
+        <p><strong>🚀 מה עכשיו? צאו למסע לתוך המוח שלכם!</strong></p>
+        <p>1️⃣ חברו את האוזניות האלחוטיות שלכם לבלוטוס במכשיר.</p>
+        <p>2️⃣ הפעילו את הסרטון למטה והשאירו אותו פועל במהלך הניטור.</p>
+        <p>3️⃣ הביטו במסך, קחו נשימה עמוקה…</p>
+        <p>4️⃣ לחצו על הכפתור כדי להתחיל לנטר את הפעילות המוחית שלכם!</p>
         
-        <iframe src="https://www.youtube.com/embed/BnjdaA6GEJw" allowfullscreen></iframe>
-        
-        <p>כעת, שבו בנוחות, שימו את האוזניות, הפעילו את המוזיקה, נשמו עמוק, ולחצו על הכפתור כדי להתחיל בניטור המוח שלכם.</p>
-        
-        <button id="show-graph-btn" class="button" onclick="showGraph()">לחץ לניטור הפעילות המוחית שלך</button>
-        
-        <div id="graph-container">
-            <canvas id="graph"></canvas>
-        </div>
+        <button id="show-graph-btn" class="button" onclick="showGraph()">💡 לחץ לניטור הפעילות המוחית שלך!</button>
+    </div>
+    
+    <div id="graph-container">
+        <img src="assets/images/brain.png" alt="מוח" class="brain-background">
+        <canvas id="graph"></canvas>
     </div>
 </body>
 </html>
