@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+@media (prefers-color-scheme: dark) {
+    body { background-color: black; color: white; }
+}
+.image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.button {
+    background-color: #FF5733;
+    color: white;
+    padding: 15px 20px;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#graph-container {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+iframe {
+    width: 90%;
+    height: 500px;
+    border: 3px solid #FFD700;
+}
+.warning {
+    color: #DC143C;
+    font-weight: bold;
+}
+.success-text {
+    color: #008000;
+}
