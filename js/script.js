@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ script.js נטען בהצלחה!");
     
     const showGraphBtn = document.getElementById("show-graph-btn");
+    console.log("🔍 הכפתור נמצא:", showGraphBtn);
     const graphContainer = document.getElementById("graph-container");
     const videoFrame = document.getElementById("video-frame"); 
 
