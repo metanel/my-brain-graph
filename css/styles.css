@@ -45,9 +45,9 @@ iframe {
     position: fixed;
     z-index: 1000;
     left: 0;
-    top: 0;
+    top: 5%;
     width: 100%;
-    height: 100%;
+    height: 90%;
     background-color: rgba(0, 0, 0, 0.5); /* רקע שחור שקוף */
     display: flex;
     justify-content: center;
