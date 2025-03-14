@@ -9,12 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeModal = document.querySelector(".close");
 
     showGraphBtn.addEventListener("click", function () {
-        if (videoFrame) { // בודקים אם ה-iframe קיים
-            modal.style.display = "flex"; // מציג את ה-modal
-        } else {
-            alert("עליך להפעיל את הסרטון לפני תחילת הניטור!");
-        }
-    });
+    modal.style.display = "flex"; // מציג את ה-modal
+});
 
     // סגירת ה-modal בלחיצה על כפתור ה-X
     closeModal.addEventListener("click", function () {
