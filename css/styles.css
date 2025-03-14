@@ -56,10 +56,10 @@ iframe {
 
 .modal-content {
     background-color: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
+    width: 50%;
+    max-width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
