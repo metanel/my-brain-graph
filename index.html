@@ -1,191 +1,88 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>גרף פעילות מוחית</title>
+    <title>ניטור פעילות מוחית</title>
     <style>
         body {
-            <h1>בואו לנטר את גלי המוח שלכם בזמן אמת!</h1>
-            <h2>1️⃣ חברו את האוזניות האלחוטיות שלכם לבלוטוס 🎧</h2>
-<img src="assets/images/calm_woman_headphones.png" alt="אישה רגועה עם אוזניות" style="max-width:100%; border-radius:10px; margin-top:20px;">
-<p style="color: #008000;">✅ חיבור האוזניות מאפשר <strong>לקרוא את פעילות המוח שלכם</strong> בדיוק גבוה.</p>
-<p style="color: #8A2BE2;">✅ הטכנולוגיה <strong>שולחת פולסים עדינים</strong>, והמוח מחזיר תגובות שנמדדות בגרף.</p>
-<p style="color: #FF6347;">✅ כך תוכלו <strong>לראות את הפעילות המוחית שלכם בזמן אמת!</strong></p>
-<p><strong style="color: #FF8C00;">🔹 למה זה חשוב?</strong> EEG מתקדם ישירות מהאוזניות!</p>
-            <h2>3️⃣ הביטו במסך, קחו נשימה עמוקה… ולחצו על הכפתור כדי להתחיל לנטר את הפעילות המוחית שלכם!</h2>
-<button id="show-graph-btn" class="button">🎯 💡 לחץ לניטור הפעילות המוחית שלך!</button>
-<p style="color: #556B2F;">✅ לחיצה על הכפתור מתחילה את <strong>הניטור המוחי בזמן אמת</strong>.</p>
-<p style="color: #9932CC;">✅ תוכלו לראות איך <strong>המוח מגיב ללחץ, רוגע וריכוז</strong>!</p>
-<p style="color: #FF4500;">✅ עם תרגול, תוכלו <strong>לשפר את השליטה בפעילות המוחית שלכם</strong>.</p>
-            <p style="color: #FF4500;">✅ עם תרגול, תוכלו <strong>לשפר את השליטה בפעילות המוחית שלכם</strong>.</p>
-
-<div id="graph-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <iframe src="graph.html" width="100%" height="400px" style="border:none; max-width: 350px; margin: auto; display: block;"></iframe>
-    </div>
-</div>
-
-            <h2>2️⃣ הפעילו את הסרטון ושמעו את הצלילים 🎵</h2>
-<iframe id="video-frame" width="560" height="315" 
-    src="https://www.youtube.com/embed/BnjdaA6GEJw" 
-    title="YouTube video player" 
-    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-</iframe>
-<p style="color: #DC143C;">✅ הסאונד לא משנה את מצב הרוח שלכם, אלא <strong>עוזר לניטור מוחי מדויק יותר</strong>.</p>
-<p style="color: #008B8B;">✅ הוא <strong>יוצר נקודת יחוס נוירולוגית</strong>, כך שהמערכת מזהה גלי מוח בצורה חדה.</p>
-<p style="color: #4682B4;">✅ <strong>האזינו עם אוזניות אלחוטיות בלבד! 🎧</strong></p>
-<p><
             text-align: center;
+            background-color: #000;
+            color: #FFD700;
             font-family: Arial, sans-serif;
-            background-color: white;
-            color: black;
+            margin: 0;
+            padding: 0;
         }
-        @media (prefers-color-scheme: dark) {
-            body { background-color: black; color: white; }
+        h1 {
+            font-size: 24px;
+            margin: 20px 0;
         }
-        .image {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .button {
-            background-color: #FF5733;
-            color: white;
-            padding: 15px 20px;
-            font-size: 22px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        #graph-container {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
-        iframe {
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             width: 90%;
-            height: 500px;
-            border: 3px solid #FFD700;
+            margin: auto;
+        }
+        .brain-background {
+            position: absolute;
+            width: 70%;
+            height: auto;
+            opacity: 0.12;
+            left: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: pulse 2.5s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.08; }
+            100% { opacity: 0.18; }
         }
         .modal {
-            display: none; /* מוסתר כברירת מחדל */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
-            top: 5%;
+            top: 0;
             width: 100%;
-            height: 90%;
-            background-color: rgba(0, 0, 0, 0.5); /* רקע שחור שקוף */
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .modal-content {
-            background-color: white;
-            padding: 15px;
+            background-color: #222;
+            padding: 20px;
             border-radius: 8px;
-            width: 50%;
-            max-width: 250px;
+            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 80%;
+            width: 400px;
         }
         .close {
-            color: #aaa;
+            color: #FFD700;
             float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
         }
-        .close:hover {
+        .button {
+            background-color: #FFD700;
             color: black;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #FFC300;
         }
     </style>
 </head>
 <body>
-    <h1>🎯 ניטור פעילות מוחית - גרף רוגע ומתח</h1>
-    <img src="assets/images/calm_woman_headphones.png" alt="אישה רגועה עם אוזניות" class="image">
-        <p>🎵 השמע את הצליל המיוחד כדי לשפר את הדיוק במדידה:</p>
-    <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID?autoplay=1&loop=1&playlist=YOUTUBE_VIDEO_ID" 
-        title="YouTube video player" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-
-    
-    <p>🔊 יש לוודא שהאוזניות מחוברות ולנגן את הצליל הייחודי ביוטיוב</p>
-    
-    <button id="show-graph-btn" class="button">💡 לחץ לניטור הפעילות המוחית שלך!</button>
-
-    <div id="graph-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <iframe src="graph.html" width="100%" height="400px" style="border:none; max-width: 350px; margin: auto; display: block;"></iframe>
-        </div>
-    </div>
-
-    <script>
-                document.addEventListener("DOMContentLoaded", function () {
-            const showGraphBtn = document.getElementById("show-graph-btn");
-            const modal = document.getElementById("graph-modal");
-            const closeModal = document.querySelector(".close");
-
-            // לחיצה על הכפתור תפתח את המודל
-            showGraphBtn.addEventListener("click", function () {
-                modal.style.display = "flex";
-            });
-
-            // לחיצה על כפתור הסגירה תסגור את המודל
-            closeModal.addEventListener("click", function () {
-                modal.style.display = "none";
-            });
-
-            // סגירה כאשר לוחצים מחוץ למודל
-            window.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-        });
-        <div id="graph-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <iframe src="graph.html" width="100%" height="400px" style="border:none; max-width: 350px; margin: auto; display: block;"></iframe>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const showGraphBtn = document.getElementById("show-graph-btn");
-        const modal = document.getElementById("graph-modal");
-        const closeModal = document.querySelector(".close");
-
-        // לחיצה על הכפתור תפתח את המודל
-        showGraphBtn.addEventListener("click", function () {
-            modal.style.display = "flex";
-        });
-
-        // לחיצה על כפתור הסגירה תסגור את המודל
-        closeModal.addEventListener("click", function () {
-            modal.style.display = "none";
-        });
-
-        // סגירה כאשר לוחצים מחוץ למודל
-        window.addEventListener("click", function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        });
-    });
-</script>
-
-</body>
-</html>
-
-    </script>
-</body>
-</html>
-
